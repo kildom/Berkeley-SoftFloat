@@ -160,8 +160,8 @@ uint_fast8_t softfloat_countLeadingZeros32( uint32_t a );
 uint_fast8_t softfloat_countLeadingZeros64( uint64_t a );
 #endif
 
-extern const uint16_t softfloat_approxRecip_1k0s[16];
-extern const uint16_t softfloat_approxRecip_1k1s[16];
+uint16_t softfloat_approxRecip_1k0s( int index );
+uint16_t softfloat_approxRecip_1k1s( int index );
 
 #ifndef softfloat_approxRecip32_1
 /*----------------------------------------------------------------------------
@@ -182,8 +182,8 @@ uint32_t softfloat_approxRecip32_1( uint32_t a );
 #endif
 #endif
 
-extern const uint16_t softfloat_approxRecipSqrt_1k0s[16];
-extern const uint16_t softfloat_approxRecipSqrt_1k1s[16];
+uint16_t softfloat_approxRecipSqrt_1k0s(int index);
+uint16_t softfloat_approxRecipSqrt_1k1s(int index);
 
 #ifndef softfloat_approxRecipSqrt32_1
 /*----------------------------------------------------------------------------

@@ -53,7 +53,8 @@ int_fast64_t f32_to_i64( float32_t a, uint_fast8_t roundingMode, bool exact )
     uint_fast64_t sig64, extra;
     struct uint64_extra sig64Extra;
 #else
-    uint32_t extSig[3];
+    extern void* softfloatlib_get_temp_buffer12();
+    uint32_t* extSig = softfloatlib_get_temp_buffer12();
 #endif
 
     /*------------------------------------------------------------------------

@@ -97,7 +97,7 @@ void
     /*------------------------------------------------------------------------
     *------------------------------------------------------------------------*/
     if ( exp <= 0x3FFE ) {
-        if ( exact ) softfloat_exceptionFlags |= softfloat_flag_inexact;
+        if ( exact ) softfloat_setFlags( softfloat_flag_inexact );
         switch ( roundingMode ) {
          case softfloat_round_near_even:
             if ( !(sigA & UINT64_C( 0x7FFFFFFFFFFFFFFF )) ) break;
@@ -163,7 +163,7 @@ void
 #ifdef SOFTFLOAT_ROUND_ODD
         if ( roundingMode == softfloat_round_odd ) sigZ |= lastBitMask;
 #endif
-        if ( exact ) softfloat_exceptionFlags |= softfloat_flag_inexact;
+        if ( exact ) softfloat_setFlags( softfloat_flag_inexact );
     }
  uiZ:
     zSPtr->signExp = uiZ64;

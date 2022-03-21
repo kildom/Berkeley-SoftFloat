@@ -57,17 +57,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /*----------------------------------------------------------------------------
 | Software floating-point underflow tininess-detection mode.
 *----------------------------------------------------------------------------*/
-extern THREAD_LOCAL uint_fast8_t softfloat_detectTininess;
 enum {
     softfloat_tininess_beforeRounding = 0,
     softfloat_tininess_afterRounding  = 1
 };
+static const uint_fast8_t softfloat_detectTininess = SF_DETECT_TININESS;
 
 /*----------------------------------------------------------------------------
 | Software floating-point rounding mode.  (Mode "odd" is supported only if
 | SoftFloat is compiled with macro 'SOFTFLOAT_ROUND_ODD' defined.)
 *----------------------------------------------------------------------------*/
-extern THREAD_LOCAL uint_fast8_t softfloat_roundingMode;
 enum {
     softfloat_round_near_even   = 0,
     softfloat_round_minMag      = 1,
@@ -76,11 +75,11 @@ enum {
     softfloat_round_near_maxMag = 4,
     softfloat_round_odd         = 6
 };
+static const uint_fast8_t softfloat_roundingMode = SF_ROUNDING_MODE;
 
 /*----------------------------------------------------------------------------
 | Software floating-point exception flags.
 *----------------------------------------------------------------------------*/
-extern THREAD_LOCAL uint_fast8_t softfloat_exceptionFlags;
 enum {
     softfloat_flag_inexact   =  1,
     softfloat_flag_underflow =  2,
@@ -92,7 +91,8 @@ enum {
 /*----------------------------------------------------------------------------
 | Routine to raise any or all of the software floating-point exception flags.
 *----------------------------------------------------------------------------*/
-void softfloat_raiseFlags( uint_fast8_t );
+static inline void softfloat_raiseFlags( uint_fast8_t a) { /* WASM ignores it */ }
+static inline void softfloat_setFlags( uint_fast8_t a) { /* WASM ignores it */ }
 
 /*----------------------------------------------------------------------------
 | Integer-to-floating-point conversion routines.

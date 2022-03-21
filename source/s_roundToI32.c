@@ -85,7 +85,7 @@ int_fast32_t
 #ifdef SOFTFLOAT_ROUND_ODD
         if ( roundingMode == softfloat_round_odd ) z |= 1;
 #endif
-        if ( exact ) softfloat_exceptionFlags |= softfloat_flag_inexact;
+        if ( exact ) softfloat_setFlags( softfloat_flag_inexact );
     }
     return z;
     /*------------------------------------------------------------------------
