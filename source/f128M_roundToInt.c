@@ -99,7 +99,7 @@ void
             sigExtra = aWPtr[indexWord( 4, 1 )] | aWPtr[indexWord( 4, 0 )];
         }
         if ( !sigExtra && !(ui96 & 0x7FFFFFFF) ) goto ui96;
-        if ( exact ) softfloat_exceptionFlags |= softfloat_flag_inexact;
+        if ( exact ) softfloat_setFlags( softfloat_flag_inexact );
         sign = signF128UI96( ui96 );
         switch ( roundingMode ) {
          case softfloat_round_near_even:
@@ -166,7 +166,7 @@ void
         bit <<= 1;
         extrasMask = bit - 1;
         if ( exact && (extra || (wordA & extrasMask)) ) {
-            softfloat_exceptionFlags |= softfloat_flag_inexact;
+            softfloat_setFlags( softfloat_flag_inexact );
         }
         if (
             (roundingMode == softfloat_round_near_even)
@@ -187,7 +187,7 @@ void
         carry = 0;
         extrasMask = bit - 1;
         if ( extra || (wordA & extrasMask) ) {
-            if ( exact ) softfloat_exceptionFlags |= softfloat_flag_inexact;
+            if ( exact ) softfloat_setFlags( softfloat_flag_inexact );
             if (
                 roundingMode
                     == (signF128UI96( ui96 ) ? softfloat_round_min
